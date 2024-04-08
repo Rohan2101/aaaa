@@ -1,6 +1,6 @@
 from flask import Flask,request, redirect, url_for,jsonify
 import os
-#import cv2
+import cv2
 from ocr_core import ocr_core
 from ocr_core2 import expiry
 from flask.helpers import send_from_directory
