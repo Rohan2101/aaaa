@@ -1,4 +1,4 @@
-#import cv2
+import cv2
 import pytesseract
 import re
 from datetime import datetime
