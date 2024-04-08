@@ -90,7 +90,7 @@ def index():
 @app.route('/', methods=['GET'])
 def serve():
     #return send_from_directory(app.static_folder, 'index.html')
-    return jsonify("response": "It works")
+    return jsonify({"response":"It works"})
 
 @app.route('/exp', methods=['GET', 'POST'])
 def serve1():
