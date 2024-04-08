@@ -3,6 +3,8 @@ import pytesseract
 import re
 from datetime import datetime
 
+pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
+
 def preprocess_image(image_path):
     image = cv2.imread(image_path)
     if image is None:
