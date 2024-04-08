@@ -4,7 +4,7 @@ import ast
 import json
 import pytesseract
 
-#pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
+
 
 def extract_section_from_abn_to_subtotal_modified(text):
     pattern = re.compile(r'(ABN.*?)(?=\d+ SUBTOTAL)', re.DOTALL)
@@ -60,6 +60,7 @@ def ocr_core(filename):
     """
     This function will handle the core OCR processing of images.
     """
+    pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
     text1 = pytesseract.image_to_string(Image.open(filename)) # We'll use Pillow's Image class to open the image and pytesseract to detect the string in the image
     extracted_section_modified = extract_section_from_abn_to_subtotal_modified(text1)
     formatted_item_details = extract_and_format_items(extracted_section_modified)
