@@ -54,7 +54,7 @@ labels ={0: ['apple', 60],
 # allow files of a specific type
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
-app = Flask(__name__, static_folder='inventory/build', static_url_path='')
+app = Flask(__name__, static_folder='inventory/build', static_url_path='/')
 CORS(app)
 
 def allowed_file(filename):
@@ -87,11 +87,11 @@ def index():
    }
 
 
-#@app.route('/', methods=['GET', 'POST'])
-#def serve():
-#    return send_from_directory(app.static_folder, 'index.html')
+@app.route('/', methods=['GET'])
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/exp', methods=['GET', 'POST'])
 def serve1():
     if request.method == 'POST':
         # check if there is a file in the request
@@ -142,7 +142,7 @@ def serve2():
 
 
 @app.route('/pred', methods=['GET', 'POST'])
-def serve():
+def serve3():
     if request.method == 'POST':
         # check if there is a file in the request
         if 'file1' not in request.files:
@@ -171,6 +171,4 @@ def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 if __name__ == '__main__':
-    port = int(os.getenv('PORT', 5000))
-    print("Starting app on port %d" % port)
-    app.run(debug=False, port=port, host='0.0.0.0')
+    app.run(debug=False, port=5000, host='0.0.0.0')
