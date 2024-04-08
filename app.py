@@ -1,19 +1,19 @@
 from flask import Flask,request, redirect, url_for,jsonify
 import os
-#import cv2
+import cv2
 from ocr_core import ocr_core
 from ocr_core2 import expiry
 from flask.helpers import send_from_directory
 from flask_cors import CORS, cross_origin
-#from keras.models import Model, load_model
+from keras.models import Model, load_model
 from werkzeug.utils import secure_filename
-#from keras.preprocessing.image import load_img,img_to_array
+from keras.preprocessing.image import load_img,img_to_array
 import numpy as np
 
 
 UPLOAD_FOLDER = '/static/uploads/'
-#new_model=load_model('rottenvsfresh.keras')
-#classimodel = load_model('FruitModel.keras')
+new_model=load_model('rottenvsfresh.keras')
+classimodel = load_model('FruitModel.keras')
 labels ={0: ['apple', 60],
  1: ['banana',7],
  2: ['beetroot', 10],
@@ -172,4 +172,4 @@ def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 if __name__ == '__main__':
-    app.run(debug=False, port=5000, host='0.0.0.0')
+    app.run(debug=False, port=int(os.environ.get('PORT',8080)), host='0.0.0.0')

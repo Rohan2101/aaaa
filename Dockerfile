@@ -9,4 +9,8 @@ COPY . ./
 RUN pip install -r requirements.txt
 RUN pip install gunicorn
 
-CMD exec gunicotn --bind :5000 --workers 1 --threads 8 --timeout 0 app:app
+RUN apt-get update -qqy && apt-get install -qqy \
+    tesseract-ocr \
+    libtesseract-dev
+
+CMD exec gunicotn --bind :$PORT --workers 1 --threads 8 --timeout 0 app:app
