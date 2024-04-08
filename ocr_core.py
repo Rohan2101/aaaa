@@ -1,10 +1,7 @@
-try:
-    from PIL import Image
-    import re 
-    import ast
-    import json
-except ImportError:
-    import Image
+from PIL import Image
+import re 
+import ast
+import json
 import pytesseract
 
 def extract_section_from_abn_to_subtotal_modified(text):
