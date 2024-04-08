@@ -4,6 +4,8 @@ import ast
 import json
 import pytesseract
 
+pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
+
 def extract_section_from_abn_to_subtotal_modified(text):
     pattern = re.compile(r'(ABN.*?)(?=\d+ SUBTOTAL)', re.DOTALL)
     match = pattern.search(text)
